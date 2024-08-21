@@ -2,25 +2,20 @@ import { test, expect } from '@playwright/test';
 const dayjs = require('dayjs');
 
 test('has title', async ({ page }) => {
-    const activity = 'AQUASALUT';
-    const activityTime = '08:15';
+    const activity = process.env.ACTIVITY.toString();
+    const activityTime = process.env.ACTIVITY_TIME.toString();
+    const username = process.env.GYMUSERNAME.toString();
+    const password = process.env.PASSWORD.toString();
     await page.goto('/');
     await expect(page).toHaveTitle(/Esportiu/);
-    await page.getByLabel('Usuari').fill('');
-    await page.getByLabel('Contrasenya').fill('');
+    await page.getByLabel('Usuari').fill(username);
+    await page.getByLabel('Contrasenya').fill(password);
     await page.getByRole('button', { name: 'Iniciar sessió' }).click();
-    await page
-        .locator('a')
-        .filter({ hasText: 'Activitats Col·lectives' })
-        .first()
-        .click();
-    await page.getByRole('link', { name: 'Reservar Activitats Col·' }).click();
-    await page.waitForTimeout(800);
-    await page.locator('input[id="dateAACC"]').click();
+    const twoDaysAfter = dayjs().add(2, 'day').format('YYYY-MM-DD');
 
-    const todayDay = dayjs().format('DD');
-    const dayToBook = parseInt(todayDay) + 2;
-    await page.getByRole('cell', { name: dayToBook.toString() }).click();
+    await page.goto(
+        `https://esportiulapiscina.provis.es/ActividadesColectivas/ClasesColectivasTimeLine?fecha=${twoDaysAfter}T00:00:00`
+    );
     const gymClasses = await page.locator('ol[class="tm-items"] li').all();
     let indexFound = false;
     let i = 0;
@@ -35,10 +30,11 @@ test('has title', async ({ page }) => {
     }
 
     await page
-        .locator('button[data-target="#modalReserva"]')
+        .locator('button[class*="vistaContenido"]')
         .nth(i - 1)
         .click();
     await expect(page.locator('td[class="nombreClase"]')).toHaveText(activity);
     await page.locator('#btnReserva').click();
-    await expect(page.locator('div[class="swal-modal"]')).toBeVisible();
+    await page.waitForTimeout(800);
+    await expect(page.getByText('Reserva correctament')).toBeVisible();
 });
