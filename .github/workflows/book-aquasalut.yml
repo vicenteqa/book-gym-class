@@ -12,7 +12,7 @@ jobs:
         timeout-minutes: 60
         runs-on: ubuntu-latest
         steps:
-              run: date
+            - run: date
             - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
               with:
