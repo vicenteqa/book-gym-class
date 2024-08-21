@@ -5,7 +5,8 @@ on:
         - cron: '0 18 * * 0' # Runs every Sunday at 18h
 
 env:
-    AUTH_DATA: ${{ secrets.AUTH_DATA }}
+    GYMUSERNAME: ${{ secrets.GYMUSERNAME }}
+    PASSWORD: ${{ secrets.PASSWORD }}
 jobs:
     test:
         timeout-minutes: 60
