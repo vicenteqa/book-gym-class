@@ -1,0 +1,17 @@
+{
+  "name": "reserva-gym",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.46.1",
+    "@types/node": "^22.4.2"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.13",
+    "prettier": "^3.3.3"
+  }
+}
