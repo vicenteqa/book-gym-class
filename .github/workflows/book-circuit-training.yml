@@ -2,7 +2,7 @@ name: Book Circuit Training
 on:
     workflow_dispatch:
     schedule:
-        - cron: '0 18 * * 6' # Runs every Saturday at 18h
+        - cron: '0 16 * * 6' # Runs every Saturday at 18h
 
 env:
     GYMUSERNAME: ${{ secrets.GYMUSERNAME }}
