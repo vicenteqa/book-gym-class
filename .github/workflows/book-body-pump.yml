@@ -17,7 +17,7 @@ jobs:
             - name: Install Playwright Browsers
               run: npx playwright install --with-deps
             - name: Run Playwright tests
-              run: AUTH_DATA=${{ env.AUTH_DATA }} ACTIVITY='BODY PUMP' ACTIVITY_TIME='08:00' npx playwright test
+              run: ACTIVITY='BODY PUMP' ACTIVITY_TIME='08:00' npx playwright test
             - uses: actions/upload-artifact@v4
               if: ${{ !cancelled() }}
               with:
