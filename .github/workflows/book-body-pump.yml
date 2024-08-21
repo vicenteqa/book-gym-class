@@ -1,8 +1,7 @@
 name: Playwright Tests
 on: workflow_dispatch
 env:
-    USERNAME: ${{ secrets.USERNAME }}
-    USERPASSWORD: ${{ secrets.USERPASSWORD }}
+    AUTH_DATA: ${{ secrets.AUTH_DATA }}
 jobs:
     test:
         timeout-minutes: 60
@@ -17,7 +16,7 @@ jobs:
             - name: Install Playwright Browsers
               run: npx playwright install --with-deps
             - name: Run Playwright tests
-              run: GYMUSERNAME=${{env.USERNAME}} ACTIVITY='BODY PUMP' ACTIVITY_TIME='08:00' PASSWORD=${{env.USERPASSWORD}} npx playwright test
+              run: AUTH_DATA=${{env.AUTH_DATA}} ACTIVITY='BODY PUMP' ACTIVITY_TIME='08:00' npx playwright test
             - uses: actions/upload-artifact@v4
               if: ${{ !cancelled() }}
               with:
