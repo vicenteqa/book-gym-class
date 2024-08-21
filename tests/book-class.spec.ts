@@ -10,6 +10,8 @@ test('has title', async ({ page }) => {
     await expect(page).toHaveTitle(/Esportiu/);
     await page.getByLabel('Usuari').fill(username);
     await page.getByLabel('Contrasenya').fill(password);
+    await page.locator('holahola').click();
+
     await page.getByRole('button', { name: 'Iniciar sessió' }).click();
     const twoDaysAfter = dayjs().add(2, 'day').format('YYYY-MM-DD');
 
