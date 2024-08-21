@@ -4,9 +4,8 @@ const dayjs = require('dayjs');
 test('has title', async ({ page }) => {
     const activity = process.env.ACTIVITY.toString();
     const activityTime = process.env.ACTIVITY_TIME.toString();
-    const authData = process.env.AUTH_DATA.toString().split('&');
-    const username = authData[0];
-    const password = authData[1];
+    const username = process.env.GYMUSERNAME.toString();
+    const password = process.env.PASSWORD.toString();
     await page.goto('/');
     await expect(page).toHaveTitle(/Esportiu/);
     await page.getByLabel('Usuari').fill(username);
