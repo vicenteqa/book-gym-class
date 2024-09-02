@@ -1,8 +1,8 @@
-name: Book Circuit Training
+name: Book Circuit Training Class for Wednesdays 6pm
 on:
     workflow_dispatch:
     schedule:
-        - cron: '0 16 * * 6' # Runs every Saturday at 18h
+        - cron: '45 15 * * 1' # Runs every Monday at 17:45h // 2h difference with server.
 
 env:
     GYMUSERNAME: ${{ secrets.GYMUSERNAME }}
@@ -27,4 +27,4 @@ jobs:
               with:
                   name: playwright-report
                   path: playwright-report/
-                  retention-days: 30
+                  retention-days: 1
