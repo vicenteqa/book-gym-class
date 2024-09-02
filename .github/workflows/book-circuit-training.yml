@@ -1,8 +1,8 @@
-name: Book Circuit Training Class for Wednesdays 6pm
+name: Book CIRCUIT TRAINING for Thursday 18:00
 on:
     workflow_dispatch:
     schedule:
-        - cron: '45 15 * * 1' # Runs every Monday at 17:45h // 2h difference with server.
+        - cron: '45 15 * * 2' # Runs every Tuesday at 17:45h // 2h difference with server.
 
 env:
     GYMUSERNAME: ${{ secrets.GYMUSERNAME }}

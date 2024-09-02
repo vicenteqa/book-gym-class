@@ -1,8 +1,8 @@
-name: Book Aquasalut
+name: Book PILATES for Thursday 8:00
 on:
     workflow_dispatch:
     schedule:
-        - cron: '0 18 * * 0' # Runs every Sunday at 18h
+        - cron: '45 5 * * 2' # Runs every Tuesday at 07:45
 
 env:
     GYMUSERNAME: ${{ secrets.GYMUSERNAME }}
@@ -21,7 +21,7 @@ jobs:
             - name: Install Playwright Browsers
               run: npx playwright install --with-deps
             - name: Run Playwright tests
-              run: ACTIVITY='AQUASALUT' ACTIVITY_TIME='08:15' npx playwright test
+              run: ACTIVITY='PILATES' ACTIVITY_TIME='08:00' npx playwright test
             - uses: actions/upload-artifact@v4
               if: ${{ !cancelled() }}
               with:
