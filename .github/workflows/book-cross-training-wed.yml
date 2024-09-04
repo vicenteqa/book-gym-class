@@ -1,8 +1,8 @@
-name: Book CIRCUIT TRAINING for Thursday 18:00
+name: Book CROSS TRAINING for Friday 17:30
 on:
     workflow_dispatch:
     schedule:
-        - cron: '45 15 * * 2' # Runs every Tuesday at 17:45h // 2h difference with server.
+        - cron: '15 15 * * 3' # Runs every Wednesday at 17:15h // 2h difference with server.
 
 env:
     GYMUSERNAME: ${{ secrets.GYMUSERNAME }}
@@ -21,10 +21,10 @@ jobs:
             - name: Install Playwright Browsers
               run: npx playwright install --with-deps
             - name: Run Playwright tests
-              run: ACTIVITY='CIRCUIT TRAINING' ACTIVITY_TIME='18:00' npx playwright test
+              run: ACTIVITY='CROSS TRAINING' ACTIVITY_TIME='17:30' npx playwright test
             - uses: actions/upload-artifact@v4
               if: ${{ !cancelled() }}
               with:
                   name: playwright-report
                   path: playwright-report/
-                  retention-days: 1
+                  retention-days: 30

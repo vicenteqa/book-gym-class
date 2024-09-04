@@ -1,8 +1,8 @@
-name: Book CROSS TRAINING for Tuesday 17:30
+name: Book CROSS TRAINING for Tuesday 17:45
 on:
     workflow_dispatch:
     schedule:
-        - cron: '45 15 * * 0' # Runs every Sunday at 17:30h // 2h difference with server.
+        - cron: '30 15 * * 0' # Runs every Sunday at 17:30h // 2h difference with server.
 
 env:
     GYMUSERNAME: ${{ secrets.GYMUSERNAME }}
