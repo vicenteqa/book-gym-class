@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 const dayjs = require('dayjs');
+import 'dotenv/config';
 
 test('Book Class', async ({ page }) => {
     test.setTimeout(1200000);
@@ -46,7 +47,7 @@ test('Book Class', async ({ page }) => {
 });
 
 async function clickBookDesiredClassFromList(page, activity, activityTime) {
-    const gymClasses = await page.locator('ol[class="tm-items"] li').all();
+    const gymClasses = await page.locator('ol.tm-items li').all();
     let indexFound = false;
     let i = 0;
     for (i = 0; i < gymClasses.length && !indexFound; i++) {
@@ -64,5 +65,5 @@ async function clickBookDesiredClassFromList(page, activity, activityTime) {
         .nth(i - 1)
         .click();
 
-    await expect(page.locator('td[class="nombreClase"]')).toHaveText(activity);
+    await expect(page.locator('td.nombreClase')).toHaveText(activity);
 }
