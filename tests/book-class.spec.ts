@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 const dayjs = require('dayjs');
 import 'dotenv/config';
+import { LoginPage } from '../page-object/login-po';
 
 test('Book Class', async ({ page }) => {
     test.setTimeout(1200000);
@@ -9,13 +10,11 @@ test('Book Class', async ({ page }) => {
     const username = process.env.GYMUSERNAME.toString();
     const password = process.env.PASSWORD.toString();
 
-    await page.goto('/');
-    await expect(page).toHaveTitle(/Esportiu/);
-    await page.getByLabel('Usuari').fill(username);
-    await page.getByLabel('Contrasenya').fill(password);
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
+    await loginPage.login(username, password);
 
-    await page.getByRole('button', { name: 'Iniciar sessió' }).click();
-    const twoDaysAfter = dayjs().add(2, 'day').format('YYYY-MM-DD');
+    const twoDaysAfter = dayjs().add(3, 'day').format('YYYY-MM-DD');
 
     await page.goto(
         `https://esportiulapiscina.provis.es/ActividadesColectivas/ClasesColectivasTimeLine?fecha=${twoDaysAfter}T00:00:00`
