@@ -1,4 +1,5 @@
 import { type Locator, type Page } from '@playwright/test';
+import 'dotenv/config';
 
 export class LoginPage {
     readonly page: Page;
@@ -19,9 +20,15 @@ export class LoginPage {
         await this.page.goto('/');
     }
 
-    async login(username, password) {
-        await this.usernameInputField.fill(username);
-        await this.userPasswordInputField.fill(password);
+    async login() {
+        if (process.env.GYMUSERNAME && process.env.PASSWORD) {
+            await this.usernameInputField.fill(process.env.GYMUSERNAME);
+            await this.userPasswordInputField.fill(process.env.PASSWORD);
+        } else {
+            throw new Error(
+                'GYMUSERNAME & PASSWORD env variables should be defined.'
+            );
+        }
         return this.submitLoginButton.click();
     }
 }
