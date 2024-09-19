@@ -4,9 +4,6 @@ on:
     schedule:
         - cron: '45 5 * * 2' # Runs every Tuesday at 07:45
 
-env:
-    GYMUSERNAME: ${{ secrets.GYMUSERNAME }}
-    PASSWORD: ${{ secrets.PASSWORD }}
 jobs:
     test:
         timeout-minutes: 60
@@ -27,4 +24,4 @@ jobs:
               with:
                   name: playwright-report
                   path: playwright-report/
-                  retention-days: 30
+                  retention-days: 3
