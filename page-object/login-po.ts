@@ -17,9 +17,6 @@ export class LoginPage {
     }
 
     async goto() {
-        console.log(process.env.BASE_URL);
-        console.log(process.env.GYMUSERNAME);
-        console.log(process.env.BASE_URL);
         await this.page.goto('/');
     }
 

@@ -4,6 +4,11 @@ on:
     schedule:
         - cron: '45 5 * * 2' # Runs every Tuesday at 07:45
 
+env:
+    GYMUSERNAME: ${{ secrets.GYMUSERNAME }}
+    PASSWORD: ${{ secrets.PASSWORD }}
+    BASE_URL: ${{ secrets.BASE_URL }}
+
 jobs:
     test:
         timeout-minutes: 60
