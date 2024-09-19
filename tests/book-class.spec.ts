@@ -13,7 +13,7 @@ test('Book Class', async ({ page }) => {
     await bookingPage.goto();
 
     await bookingPage.waitUntilBookingButtonIsVisible();
-    await bookingPage.bookingButton.click();
+    await bookingPage.modalBookingButton.click();
 
     await page.waitForTimeout(1000);
     await expect(page.getByText('Reserva correctament')).toBeVisible();

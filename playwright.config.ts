@@ -9,7 +9,7 @@ export default defineConfig({
     reporter: 'html',
 
     use: {
-        baseURL: 'https://esportiulapiscina.provis.es',
+        baseURL: process.env.BASE_URL,
         screenshot: 'only-on-failure',
     },
 

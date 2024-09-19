@@ -3,11 +3,17 @@ import dayjs from 'dayjs';
 
 export class BookingPage {
     readonly page: Page;
-    readonly bookingButton: Locator;
+    readonly modalBookingButton: Locator;
+    readonly listOfClasses: Locator;
+    readonly listOfButtonsToBookClass: Locator;
 
     constructor(page: Page) {
         this.page = page;
-        this.bookingButton = page
+        this.listOfClasses = page.locator('ol.tm-items li');
+        this.listOfButtonsToBookClass = page.locator(
+            'button[class*="vistaContenido"]'
+        );
+        this.modalBookingButton = page
             .locator('#modalReserva')
             .locator('button')
             .getByText('Reservar');
@@ -26,7 +32,8 @@ export class BookingPage {
         while (!isBookingButtonAvailable) {
             await this.clickBookDesiredClassFromList();
             await this.page.waitForTimeout(1000);
-            isBookingButtonAvailable = await this.bookingButton.isVisible();
+            isBookingButtonAvailable =
+                await this.modalBookingButton.isVisible();
             if (!isBookingButtonAvailable) {
                 await this.page.waitForTimeout(5000);
                 await this.page.reload();
@@ -35,7 +42,7 @@ export class BookingPage {
     }
 
     async clickBookDesiredClassFromList() {
-        const gymClasses = await this.page.locator('ol.tm-items li').all();
+        const gymClasses = await this.listOfClasses.all();
         let indexFound = false;
         let i = 0;
         for (i = 0; i < gymClasses.length && !indexFound; i++) {
@@ -47,10 +54,8 @@ export class BookingPage {
             )
                 indexFound = true;
         }
-        await this.page
-            .locator('button[class*="vistaContenido"]')
-            .nth(i - 1)
-            .click();
+
+        await this.listOfButtonsToBookClass.nth(i - 1).click();
 
         await expect(this.page.locator('td.nombreClase')).toHaveText(
             process.env.ACTIVITY
