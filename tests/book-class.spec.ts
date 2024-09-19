@@ -1,20 +1,15 @@
-import { test, expect } from '@playwright/test';
-import 'dotenv/config';
+import { test } from '@playwright/test';
 import { LoginPage } from '../page-object/login-po';
 import { BookingPage } from '../page-object/booking-po';
 
 test('Book Class', async ({ page }) => {
     test.setTimeout(1200000);
-
     const loginPage = new LoginPage(page);
     const bookingPage = new BookingPage(page);
     await loginPage.goto();
     await loginPage.login();
     await bookingPage.goto();
-
-    await bookingPage.waitUntilBookingButtonIsVisible();
+    await bookingPage.waitUntilBookingButtonIsAvailable();
     await bookingPage.modalBookingButton.click();
-
-    await page.waitForTimeout(1000);
-    await expect(page.getByText('Reserva correctament')).toBeVisible();
+    await bookingPage.verifyBookingConfirmationMessage();
 });

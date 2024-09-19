@@ -1,14 +1,21 @@
 import { type Locator, type Page, expect } from '@playwright/test';
 import dayjs from 'dayjs';
+import 'dotenv/config';
 
 export class BookingPage {
     readonly page: Page;
     readonly modalBookingButton: Locator;
+    readonly modalClassNameLabel: Locator;
     readonly listOfClasses: Locator;
     readonly listOfButtonsToBookClass: Locator;
+    readonly bookingConfirmationMessage: Locator;
 
     constructor(page: Page) {
         this.page = page;
+        this.bookingConfirmationMessage = page.getByText(
+            'Reserva correctament'
+        );
+        this.modalClassNameLabel = page.locator('td.nombreClase');
         this.listOfClasses = page.locator('ol.tm-items li');
         this.listOfButtonsToBookClass = page.locator(
             'button[class*="vistaContenido"]'
@@ -26,12 +33,31 @@ export class BookingPage {
         );
     }
 
-    async waitUntilBookingButtonIsVisible() {
+    async verifyBookingConfirmationMessage() {
+        await expect(this.bookingConfirmationMessage).toBeVisible({
+            timeout: 3000,
+        });
+    }
+
+    async validateActivityName() {
+        if (process.env.ACTIVITY)
+            await expect(this.modalClassNameLabel).toHaveText(
+                process.env.ACTIVITY
+            );
+        else {
+            throw new Error('ACTIVITY env variable should be defined.');
+        }
+    }
+
+    async waitUntilBookingButtonIsAvailable() {
         let isBookingButtonAvailable = false;
 
         while (!isBookingButtonAvailable) {
-            await this.clickBookDesiredClassFromList();
+            const desiredClassIndex = await this.findDesiredClassIndex();
+            await this.clickBookDesiredClassFromList(desiredClassIndex);
             await this.page.waitForTimeout(1000);
+            await this.validateActivityName();
+
             isBookingButtonAvailable =
                 await this.modalBookingButton.isVisible();
             if (!isBookingButtonAvailable) {
@@ -41,24 +67,32 @@ export class BookingPage {
         }
     }
 
-    async clickBookDesiredClassFromList() {
-        const gymClasses = await this.listOfClasses.all();
-        let indexFound = false;
-        let i = 0;
-        for (i = 0; i < gymClasses.length && !indexFound; i++) {
-            const classItemText = await gymClasses[i].textContent();
-            if (
-                classItemText !== null &&
-                classItemText.includes(process.env.ACTIVITY) &&
-                classItemText.includes(process.env.ACTIVITY_TIME)
-            )
-                indexFound = true;
+    async findDesiredClassIndex() {
+        if (process.env.ACTIVITY && process.env.ACTIVITY_TIME) {
+            const activity = process.env.ACTIVITY;
+            const activityTime = process.env.ACTIVITY_TIME;
+            const gymClasses = await this.listOfClasses.all();
+            let indexFound = -1;
+            for (let i = 0; i < gymClasses.length; i++) {
+                const classItemText = await gymClasses[i].textContent();
+                if (
+                    classItemText !== null &&
+                    classItemText.includes(activity) &&
+                    classItemText.includes(activityTime)
+                ) {
+                    indexFound = i;
+                    break;
+                }
+            }
+            return indexFound;
+        } else {
+            throw new Error(
+                'ACTIVITY & ACTIVITY_TIME env variables should be defined.'
+            );
         }
+    }
 
-        await this.listOfButtonsToBookClass.nth(i - 1).click();
-
-        await expect(this.page.locator('td.nombreClase')).toHaveText(
-            process.env.ACTIVITY
-        );
+    async clickBookDesiredClassFromList(desiredClassIndex: number) {
+        await this.listOfButtonsToBookClass.nth(desiredClassIndex).click();
     }
 }
