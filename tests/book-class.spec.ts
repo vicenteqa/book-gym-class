@@ -4,7 +4,6 @@ import { BookingPage } from '../page-object/booking-po';
 
 test('Book Class', async ({ page }) => {
     // test.setTimeout(1200000);
-    test.setTimeout(80000);
     console.log(process.env.ACTIVITY);
     console.log(process.env.ACTIVITY_TIME);
     console.log(process.env.GYMUSERNAME);
