@@ -1,14 +1,17 @@
-# Book Gym Class
-This project is a simple tool for personal use to do the reservation of group classes for my gym. The project uses page object model to define the locators and required functions in every page. The actions to get the bookings done are done with a template and I just have to create an yml for each class that I want to book, calling the template with the desired parameters, activity and activity time.
+## Book Gym Class
 
+This project is a personal tool designed to automate the reservation of group classes at my gym. It utilizes the Page Object Model to define locators and required functions for each page. By using a template, I can easily create a YAML file for each class I want to book, calling the template with the desired parameters: activity and activity time.
 
 # Problem that this project solves
-The main problem that I find when trying to book a class (specially crossfit class) for my gym is that they open the reservation just 48h hours before the class starts and they just allow 14 people to join, so it is easy to miss the shot when I manually try to book a class. What I solve with this code is to automate that (as it is way faster to do the booking with an automation tool) and to forget about the manual process. The jobs are scheduled a few minutes before the 48h hours before a class can be booked and then the code refreshes the page until it's 48h exact hours before the class and the button to do the booking is available and then proceeds with the reservation.
 
+One of the main challenges I face when trying to book a class (especially CrossFit classes) at my gym is that reservations open only 48 hours before the class starts, and only 14 spots are available. This makes it easy to miss out on booking manually. This project automates the process, allowing for much faster bookings. The jobs are scheduled a few minutes before the 48-hour window (this is because GitHub actions can start a few minutes later than the time they are scheduled), refreshing the page until the exact time arrives when the booking button becomes available. Once the button is active, the code proceeds with the reservation.
 
-## Tech Stack
+# Tech Stack
 
-- Node.js
-- Typescript
-- Playwright
+-   Node.js
+-   Typescript
+-   Playwright
 
+# Future improvements to do
+
+-   Wait until the specific timestamp where the reservation button should be available and then go for it, instead of keeping refreshing the page with unnecessary requests until the button is present.
