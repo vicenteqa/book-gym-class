@@ -13,12 +13,11 @@ on:
 
 jobs:
     invoke-template:
-        - name: Call template workflow
-            uses: ./.github/workflows/template.yml
-            with:
-                activity: ${{ inputs.activity }}
-                activity_time: ${{ inputs.activity_time }}
-            env:
-                GYMUSERNAME: ${{ secrets.GYMUSERNAME }}
-                PASSWORD: ${{ secrets.PASSWORD }}
-                BASE_URL: ${{ secrets.BASE_URL }}
+        uses: ./.github/workflows/template.yml
+        with:
+            activity: ${{ inputs.activity }}
+            activity_time: ${{ inputs.activity_time }}
+        env:
+            GYMUSERNAME: ${{ secrets.GYMUSERNAME }}
+            PASSWORD: ${{ secrets.PASSWORD }}
+            BASE_URL: ${{ secrets.BASE_URL }}
