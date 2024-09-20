@@ -11,10 +11,25 @@ on:
                 description: 'Time of the activity on the schedule of the gym in the format HH:MM'
                 required: true
                 type: string
+            base_url:
+                description: 'Base URL of the gym website'
+                required: true
+                type: string
+            gymusername:
+                description: 'Username to login to the gym website'
+                required: true
+                type: string
+            password:
+                description: 'Password to login to the gym website'
+                required: true
+                type: string
 
 env:
     ACTIVITY: ${{ inputs.activity }}
     ACTIVITY_TIME: ${{ inputs.activity_time }}
+    BASE_URL: ${{ inputs.base_url }}
+    GYMUSERNAME: ${{ inputs.gymusername }}
+    PASSWORD: ${{ inputs.password }}
 
 jobs:
     test:
