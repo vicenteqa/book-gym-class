@@ -1,4 +1,4 @@
-name: playground
+name: Template
 
 on:
     workflow_call:
