@@ -1,6 +1,6 @@
 name: Playground Workflow to test changes before merging to master.
 on:
-    workflow_call:
+    workflow_dispatch:
         inputs:
             activity:
                 description: 'Activity name, aka the class to book'
