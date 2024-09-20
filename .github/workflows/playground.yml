@@ -11,6 +11,13 @@ on:
                 required: true
                 type: string
 
+env:
+    GYMUSERNAME: ${{ secrets.GYMUSERNAME }}
+    PASSWORD: ${{ secrets.PASSWORD }}
+    BASE_URL: ${{ secrets.BASE_URL }}
+    ACTIVITY: ${{ inputs.activity }}
+    ACTIVITY_TIME: ${{ inputs.activity_time }}
+
 jobs:
     invoke-template:
         uses: ./.github/workflows/template.yml
