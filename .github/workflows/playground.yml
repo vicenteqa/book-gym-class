@@ -12,8 +12,8 @@ on:
             type: string
 
 jobs:
-    call-template:
-        uses: template.yml@add-page-object-model
+    invoke-template:
+        uses: ./github/workflows/template.yml
         with:
             activity: ${{ inputs.activity }}
             activity_time: ${{ inputs.activity_time }}
