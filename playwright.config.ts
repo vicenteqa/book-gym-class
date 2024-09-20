@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import 'dotenv/config';
 
 export default defineConfig({
     testDir: './tests',
@@ -9,7 +10,7 @@ export default defineConfig({
     reporter: 'html',
 
     use: {
-        baseURL: 'https://esportiulapiscina.provis.es',
+        baseURL: process.env.BASE_URL,
         screenshot: 'only-on-failure',
     },
 

@@ -1,7 +1,7 @@
-name: Template to be invoked by other workflows
+name: Template
 
 on:
-    workflow_dispatch:
+    workflow_call:
         inputs:
             activity:
                 description: 'Activity name, aka the class to book'
@@ -11,7 +11,7 @@ on:
                 description: 'Time of the activity on the schedule of the gym in the format HH:MM'
                 required: true
                 type: string
-    workflow_call:
+    workflow_dispatch:
         inputs:
             activity:
                 description: 'Activity name, aka the class to book'

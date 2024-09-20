@@ -1,0 +1,19 @@
+name: Playground Workflow to test changes before merging to master.
+on:
+    workflow_dispatch:
+        inputs:
+        activity:
+            description: 'Activity name, aka the class to book'
+            required: true
+            type: string
+        activity_time:
+            description: 'Time of the activity on the schedule of the gym in the format HH:MM'
+            required: true
+            type: string
+
+jobs:
+    invoke-template:
+        uses: ./.github/workflows/template.yml
+        with:
+            activity: ${{ inputs.activity }}
+            activity_time: ${{ inputs.activity_time }}
