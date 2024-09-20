@@ -11,11 +11,6 @@ on:
                 required: true
                 type: string
 
-env:
-    BASE_URL: ${{ secrets.base_url }}
-    GYMUSERNAME: ${{ secrets.gymusername }}
-    PASSWORD: ${{ secrets.password }}
-
 jobs:
     invoke-template:
         uses: ./.github/workflows/template.yml
@@ -25,3 +20,7 @@ jobs:
             gymusername: ${{ env.GYMUSERNAME }}
             password: ${{ env.PASSWORD }}
             base_url: ${{ env.BASE_URL }}
+        secrets:
+            base_url: ${{ secrets.BASE_URL }}
+            gymusername: ${{ secrets.GYMUSERNAME }}
+            password: ${{ secrets.PASSWORD }}
