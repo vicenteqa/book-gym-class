@@ -1,4 +1,4 @@
-name: Template to be invoked by other workflows
+name: Template COPY
 
 on:
     workflow_dispatch:
