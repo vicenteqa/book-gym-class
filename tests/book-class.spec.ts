@@ -15,7 +15,7 @@ test('Book Class', async ({ page }) => {
     await page.getByLabel('Contrasenya').fill(password);
 
     await page.getByRole('button', { name: 'Iniciar sessió' }).click();
-    const twoDaysAfter = dayjs().add(2, 'day').format('YYYY-MM-DD');
+    const twoDaysAfter = dayjs().add(0, 'day').format('YYYY-MM-DD');
 
     await page.goto(
         `https://esportiulapiscina.provis.es/ActividadesColectivas/ClasesColectivasTimeLine?fecha=${twoDaysAfter}T00:00:00`
