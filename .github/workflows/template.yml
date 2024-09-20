@@ -1,4 +1,5 @@
-name: Playground Workflow to test changes before merging to master.
+name: Template Workflow to test changes before merging to master.
+
 on:
     workflow_call:
         inputs:
@@ -10,11 +11,12 @@ on:
                 description: 'Time of the activity on the schedule of the gym in the format HH:MM'
                 required: true
                 type: string
-
 env:
     GYMUSERNAME: ${{ secrets.GYMUSERNAME }}
     PASSWORD: ${{ secrets.PASSWORD }}
     BASE_URL: ${{ secrets.BASE_URL }}
+    ACTIVITY: ${{ inputs.activity }}
+    ACTIVITY_TIME: ${{ inputs.activity_time }}
 
 jobs:
     test:
@@ -30,7 +32,7 @@ jobs:
             - name: Install Playwright Browsers
               run: npx playwright install --with-deps
             - name: Run Playwright tests
-              run: ACTIVITY=${{ inputs.activity }} ACTIVITY_TIME=${{ inputs.activity_time }} npx playwright test
+              run: npx playwright test
             - uses: actions/upload-artifact@v4
               if: ${{ !cancelled() }}
               with:
