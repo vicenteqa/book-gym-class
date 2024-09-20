@@ -17,9 +17,9 @@ jobs:
     invoke-template:
         uses: ./.github/workflows/template.yml
         with:
-            activity: { { inputs.activity } }
-            activity_time: { { inputs.activity_time } }
-            days_ahead: { { inputs.days_ahead } }
+            activity: ${{ inputs.activity }}
+            activity_time: ${{ inputs.activity_time }}
+            days_ahead: ${{ inputs.days_ahead }}
         secrets:
             base_url: ${{ secrets.BASE_URL }}
             gymusername: ${{ secrets.GYMUSERNAME }}
