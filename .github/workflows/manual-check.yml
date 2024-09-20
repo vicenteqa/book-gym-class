@@ -8,6 +8,10 @@ on:
             activity_time:
                 description: 'Time to book the activity'
                 required: true
+            days_ahead:
+                description: 'Days ahead to check the activity calendar'
+                required: false
+                default: 2
 
 jobs:
     invoke-template:
@@ -15,6 +19,7 @@ jobs:
         with:
             activity: { { inputs.activity } }
             activity_time: { { inputs.activity_time } }
+            days_ahead: { { inputs.days_ahead } }
         secrets:
             base_url: ${{ secrets.BASE_URL }}
             gymusername: ${{ secrets.GYMUSERNAME }}
