@@ -14,4 +14,4 @@ One of the main challenges I face when trying to book a class (especially CrossF
 
 ## Future improvements to do
 
--   Wait until the specific timestamp where the reservation button should be available and then go for it, instead of keeping refreshing the page with unnecessary requests until the button is present.
+-   Wait until the specific timestamp where the reservation button should be available and then go for it, instead of keep refreshing the page with unnecessary requests until the button is present.
