@@ -26,7 +26,8 @@ export class BookingPage {
             .getByText('Reservar');
     }
 
-    async goto(daysAhead: number = 0) {
+    async goto() {
+        const daysAhead = parseInt(process.env.DAYS_AHEAD ?? '2');
         const selectedDate = dayjs().add(daysAhead, 'day').format('YYYY-MM-DD');
         await this.page.goto(
             `/ActividadesColectivas/ClasesColectivasTimeLine?fecha=${selectedDate}T00:00:00`

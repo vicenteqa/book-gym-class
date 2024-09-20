@@ -11,6 +11,11 @@ on:
                 description: 'Time of the activity on the schedule of the gym in the format HH:MM'
                 required: true
                 type: string
+            days_ahead:
+                description: 'Days ahead to check the activity calendar of the gym'
+                required: false
+                default: 2
+                type: string
         secrets:
             BASE_URL:
                 required: true
@@ -25,6 +30,7 @@ env:
     PASSWORD: ${{ secrets.PASSWORD }}
     ACTIVITY: ${{ inputs.activity }}
     ACTIVITY_TIME: ${{ inputs.activity_time }}
+    DAYS_AHEAD: ${{ inputs.days_ahead }}
 
 jobs:
     test:
