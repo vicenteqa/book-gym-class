@@ -17,9 +17,6 @@ jobs:
         with:
             activity: ${{ inputs.activity }}
             activity_time: ${{ inputs.activity_time }}
-            gymusername: ${{ env.GYMUSERNAME }}
-            password: ${{ env.PASSWORD }}
-            base_url: ${{ env.BASE_URL }}
         secrets:
             base_url: ${{ secrets.BASE_URL }}
             gymusername: ${{ secrets.GYMUSERNAME }}
