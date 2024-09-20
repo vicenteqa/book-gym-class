@@ -11,21 +11,8 @@ on:
                 description: 'Time of the activity on the schedule of the gym in the format HH:MM'
                 required: true
                 type: string
-    workflow_dispatch:
-        inputs:
-            activity:
-                description: 'Activity name, aka the class to book'
-                required: true
-                type: string
-            activity_time:
-                description: 'Time of the activity on the schedule of the gym in the format HH:MM'
-                required: true
-                type: string
 
 env:
-    GYMUSERNAME: ${{ secrets.GYMUSERNAME }}
-    PASSWORD: ${{ secrets.PASSWORD }}
-    BASE_URL: ${{ secrets.BASE_URL }}
     ACTIVITY: ${{ inputs.activity }}
     ACTIVITY_TIME: ${{ inputs.activity_time }}
 
