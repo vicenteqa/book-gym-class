@@ -1,24 +1,12 @@
-name: Template COPY
+name: playground
 
 on:
     workflow_dispatch:
-    workflow_call:
-        inputs:
-            activity:
-                description: 'Activity name, aka the class to book'
-                required: true
-                type: string
-            activity_time:
-                description: 'Time of the activity on the schedule of the gym in the format HH:MM'
-                required: true
-                type: string
 
 env:
     GYMUSERNAME: ${{ secrets.GYMUSERNAME }}
     PASSWORD: ${{ secrets.PASSWORD }}
     BASE_URL: ${{ secrets.BASE_URL }}
-    ACTIVITY: 'LES MILLS TONE'
-    ACTIVITY_TIME: '15:15'
 
 jobs:
     test:
@@ -34,7 +22,7 @@ jobs:
             - name: Install Playwright Browsers
               run: npx playwright install --with-deps
             - name: Run Playwright tests
-              run: npx playwright test
+              run: ACTIVITY='LES MILLS TONE' ACTIVITY_TIME='15:15' npx playwright test
             - uses: actions/upload-artifact@v4
               if: ${{ !cancelled() }}
               with:
