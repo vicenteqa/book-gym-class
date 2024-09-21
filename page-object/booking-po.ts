@@ -50,22 +50,12 @@ export class BookingPage {
         }
     }
 
-    async waitUntilBookingButtonIsAvailable() {
-        let isBookingButtonAvailable = false;
-
-        while (!isBookingButtonAvailable) {
-            const desiredClassIndex = await this.findDesiredClassIndex();
-            await this.clickBookDesiredClassFromList(desiredClassIndex);
-            await this.page.waitForTimeout(1000);
-            await this.validateActivityName();
-
-            isBookingButtonAvailable =
-                await this.modalBookingButton.isVisible();
-            if (!isBookingButtonAvailable) {
-                await this.page.waitForTimeout(5000);
-                await this.page.reload();
-            }
-        }
+    async bookDesiredClass() {
+        const desiredClassIndex = await this.findDesiredClassIndex();
+        await this.listOfButtonsToBookClass.nth(desiredClassIndex).click();
+        await this.page.waitForTimeout(1000);
+        await this.validateActivityName();
+        await this.modalBookingButton.click();
     }
 
     async findDesiredClassIndex() {
@@ -91,9 +81,5 @@ export class BookingPage {
                 'ACTIVITY & ACTIVITY_TIME env variables should be defined.'
             );
         }
-    }
-
-    async clickBookDesiredClassFromList(desiredClassIndex: number) {
-        await this.listOfButtonsToBookClass.nth(desiredClassIndex).click();
     }
 }

@@ -9,7 +9,6 @@ test('Book Class', async ({ page }) => {
     await loginPage.goto();
     await loginPage.login();
     await bookingPage.goto();
-    await bookingPage.waitUntilBookingButtonIsAvailable();
-    await bookingPage.modalBookingButton.click();
+    await bookingPage.bookDesiredClass();
     await bookingPage.verifyBookingConfirmationMessage();
 });
