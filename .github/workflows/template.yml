@@ -33,9 +33,18 @@ env:
     DAYS_AHEAD: ${{ inputs.days_ahead }}
 
 jobs:
-    sleep:
+    test:
+        timeout-minutes: 60
         runs-on: ubuntu-latest
         steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 18
+            - name: Install dependencies
+              run: npm ci
+            - name: Install Playwright Browsers
+              run: npx playwright install --with-deps
             - name: Sleep until the target time
               run: |
                   # Set the target time to ${{ inputs.activity_time }} Madrid time for today
@@ -53,20 +62,6 @@ jobs:
                   fi
                   # Continue execution after sleep
                   echo "Reached the target timestamp. Continuing execution..."
-
-    test:
-        needs: sleep
-        timeout-minutes: 60
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
-              with:
-                  node-version: 18
-            - name: Install dependencies
-              run: npm ci
-            - name: Install Playwright Browsers
-              run: npx playwright install --with-deps
             - name: Run Playwright tests
               run: npx playwright test
             - uses: actions/upload-artifact@v4
