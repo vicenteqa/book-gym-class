@@ -1,15 +1,16 @@
-name: Book CIRCUIT TRAINING for Monday 17:45
+name: Book CIRCUIT TRAINING for Monday 07:00
+
 on:
     workflow_dispatch:
     schedule:
-        - cron: '30 15 * * 6' # Runs every Saturday at 17:30h // 2h difference with server.
+        - cron: '45 4 * * 6' # Runs every Saturday at 06:45h // 2h difference with server.
 
 jobs:
     invoke-template:
         uses: ./.github/workflows/template.yml
         with:
             activity: 'CIRCUIT TRAINING'
-            activity_time: '17:45'
+            activity_time: '07:00'
         secrets:
             base_url: ${{ secrets.BASE_URL }}
             gymusername: ${{ secrets.GYMUSERNAME }}
