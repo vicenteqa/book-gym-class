@@ -39,7 +39,7 @@ jobs:
             - name: Sleep for 5 seconds
               run: |
                   # Set the target time to 16:12 (16:18 PM) Madrid time for today
-                  TARGET_TIME=$(TZ="Europe/Madrid" date -d 16:18 +%s)
+                  TARGET_TIME=$(TZ="Europe/Madrid" date -d 16:20 +%s)
                   # Get current time in seconds since epoch
                   CURRENT_TIMESTAMP=$(date +%s)
                   # Calculate the difference (sleep time in seconds)
@@ -55,6 +55,7 @@ jobs:
                   echo "Reached the target timestamp. Continuing execution..."
 
     test:
+        needs: sleep
         timeout-minutes: 60
         runs-on: ubuntu-latest
         steps:
