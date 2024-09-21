@@ -36,9 +36,9 @@ jobs:
     sleep:
         runs-on: ubuntu-latest
         steps:
-            - name: Sleep for 5 seconds
+            - name: Sleep until the target time
               run: |
-                  # Set the target time to 16:12 (16:18 PM) Madrid time for today
+                  # Set the target time to ${{ inputs.activity_time }} Madrid time for today
                   TARGET_TIME=$(TZ="Europe/Madrid" date -d ${{ inputs.activity_time }} +%s)
                   # Get current time in seconds since epoch
                   CURRENT_TIMESTAMP=$(date +%s)
@@ -46,7 +46,7 @@ jobs:
                   SLEEP_TIME=$((TARGET_TIME - CURRENT_TIMESTAMP))
                   # Check if the target time is in the future
                   if [ "$SLEEP_TIME" -gt 0 ]; then
-                  echo "Sleeping for $SLEEP_TIME seconds until 16:12 Madrid time..."
+                  echo "Sleeping for $SLEEP_TIME seconds until ${{ inputs.activity_time }} Madrid time..."
                   sleep "$SLEEP_TIME"
                   else
                   echo "Target time has already passed for today."
