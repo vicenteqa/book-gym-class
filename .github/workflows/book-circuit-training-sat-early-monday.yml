@@ -1,4 +1,4 @@
-name: Book CIRCUIT TRAINING for Monday 07:00
+name: Book CIRCUIT TRAINING for Monday 17:45
 on:
     workflow_dispatch:
     schedule:
