@@ -39,7 +39,7 @@ jobs:
             - name: Sleep for 5 seconds
               run: |
                   # Set the target time to 16:12 (16:18 PM) Madrid time for today
-                  TARGET_TIME=$(TZ="Europe/Madrid" date -d 16:20 +%s)
+                  TARGET_TIME=$(TZ="Europe/Madrid" date -d ${{ inputs.activity_time }} +%s)
                   # Get current time in seconds since epoch
                   CURRENT_TIMESTAMP=$(date +%s)
                   # Calculate the difference (sleep time in seconds)
