@@ -2,14 +2,14 @@ name: Book CROSS TRAINING Express for Tuesday 8:00
 on:
     workflow_dispatch:
     schedule:
-        - cron: '50 05 * * 3'
+        - cron: '50 07 * * 0'
 
 jobs:
     invoke-template:
         uses: ./.github/workflows/template.yml
         with:
-            activity: 'CROSS TRAINING EXPRESS'
-            activity_time: '08:00'
+            activity: 'LES MILLS DANCE'
+            activity_time: '10:00'
         secrets:
             base_url: ${{ secrets.BASE_URL }}
             gymusername: ${{ secrets.GYMUSERNAME }}
