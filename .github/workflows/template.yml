@@ -37,8 +37,6 @@ jobs:
         timeout-minutes: 60
         runs-on: ubuntu-latest
         steps:
-            - name: Print current time
-              run: TZ="Europe/Madrid" date +"%H:%M:%S"
             - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
               with:
