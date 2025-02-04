@@ -9,7 +9,7 @@ jobs:
         uses: ./.github/workflows/template.yml
         with:
             activity: 'CIRCUIT TRAINING TALAIA'
-            activity_time: '17:45'
+            activity_time: '15:15'
         secrets:
             base_url: ${{ secrets.BASE_URL }}
             gymusername: ${{ secrets.GYMUSERNAME }}
