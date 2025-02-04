@@ -6,6 +6,7 @@ export class LoginPage {
     readonly usernameInputField: Locator;
     readonly userPasswordInputField: Locator;
     readonly submitLoginButton: Locator;
+    readonly acceptAllCookiesButton: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -14,10 +15,15 @@ export class LoginPage {
         this.submitLoginButton = page.getByRole('button', {
             name: 'Iniciar sessió',
         });
+        this.acceptAllCookiesButton = page.locator('#btnCookiesTodas');
     }
 
     async goto() {
         await this.page.goto('/');
+    }
+
+    async acceptCookies() {
+        return this.acceptAllCookiesButton.click();
     }
 
     async login() {

@@ -34,7 +34,7 @@ env:
 
 jobs:
     test:
-        timeout-minutes: 60
+        timeout-minutes: 20
         runs-on: ubuntu-latest
         steps:
             - name: Show current time for debuggin purposes

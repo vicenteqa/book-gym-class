@@ -8,13 +8,9 @@ export class BookingPage {
     readonly modalClassNameLabel: Locator;
     readonly listOfClasses: Locator;
     readonly listOfButtonsToBookClass: Locator;
-    readonly bookingConfirmationMessage: Locator;
 
     constructor(page: Page) {
         this.page = page;
-        this.bookingConfirmationMessage = page.getByText(
-            'Reserva correctament'
-        );
         this.modalClassNameLabel = page.locator('td.nombreClase');
         this.listOfClasses = page.locator('ol.tm-items li');
         this.listOfButtonsToBookClass = page.locator(
@@ -34,10 +30,15 @@ export class BookingPage {
         );
     }
 
-    async verifyBookingConfirmationMessage() {
-        await expect(this.bookingConfirmationMessage).toBeVisible({
-            timeout: 3000,
-        });
+    async waitForBookingClassEndpoint() {
+        await this.page.waitForResponse(
+            (response) =>
+                response
+                    .url()
+                    .includes(
+                        '/ActividadesColectivas/ReservarClaseColectiva'
+                    ) && response.status() === 200
+        );
     }
 
     async validateActivityName() {
@@ -56,6 +57,7 @@ export class BookingPage {
         await this.page.waitForTimeout(1000);
         await this.validateActivityName();
         await this.modalBookingButton.click();
+        await this.waitForBookingClassEndpoint();
     }
 
     async findDesiredClassIndex() {
