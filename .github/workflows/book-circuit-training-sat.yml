@@ -13,4 +13,4 @@ jobs:
         secrets:
             BASE_URL: ${{ secrets.BASE_URL }}
             GYMUSERNAME: ${{ secrets.GYMUSERNAME }}
-            GYMUSERNAME: ${{ secrets.PASSWORD }}
+            PASSWORD: ${{ secrets.PASSWORD }}
