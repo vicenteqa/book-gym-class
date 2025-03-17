@@ -11,6 +11,6 @@ jobs:
             activity: 'CIRCUIT TRAINING TALAIA'
             activity_time: '15:15'
         secrets:
-            base_url: ${{ secrets.BASE_URL }}
-            gymusername: ${{ secrets.GYMUSERNAME }}
-            password: ${{ secrets.PASSWORD }}
+            BASE_URL: ${{ secrets.BASE_URL }}
+            GYMUSERNAME: ${{ secrets.GYMUSERNAME }}
+            PASSWORD: ${{ secrets.PASSWORD }}
