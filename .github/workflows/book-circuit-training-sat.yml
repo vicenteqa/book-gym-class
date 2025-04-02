@@ -2,7 +2,7 @@ name: Book CIRCUIT TRAINING for Monday 17:45
 on:
     workflow_dispatch:
     schedule:
-        - cron: '25 16 * * 6' # Runs every Saturday at 17:25h to book Class for  Monday 18h // 1h difference with server.
+        - cron: '25 15 * * 6' # Runs every Saturday at 17:25h to book Class for  Monday 18h // 1h difference with server.
 
 jobs:
     invoke-template:

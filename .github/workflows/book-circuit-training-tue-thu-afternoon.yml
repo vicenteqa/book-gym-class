@@ -2,7 +2,7 @@ name: Book CIRCUIT TRAINING TALAIA for Thursday 15:15
 on:
     workflow_dispatch:
     schedule:
-        - cron: '55 13 * * 2' # Runs every Tuesday at 14:55h to book class for Thursday 15:15 // 1h difference with server.
+        - cron: '55 12 * * 2' # Runs every Tuesday at 14:55h to book class for Thursday 15:15 // 1h difference with server.
 
 jobs:
     invoke-template:
