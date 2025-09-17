@@ -53,6 +53,7 @@ export class BookingPage {
 
     async bookDesiredClass() {
         const desiredClassIndex = await this.findDesiredClassIndex();
+        console.log(desiredClassIndex);
         await this.listOfButtonsToBookClass.nth(desiredClassIndex).click();
         await this.page.waitForTimeout(1000);
         await this.validateActivityName();
@@ -62,6 +63,8 @@ export class BookingPage {
 
     async findDesiredClassIndex() {
         if (process.env.ACTIVITY && process.env.ACTIVITY_TIME) {
+            console.log(process.env.ACTIVITY);
+            console.log(process.env.ACTIVITY_TIME);
             const activity = process.env.ACTIVITY;
             const activityTime = process.env.ACTIVITY_TIME;
             const gymClasses = await this.listOfClasses.all();
