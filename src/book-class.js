@@ -42,9 +42,8 @@ async function login() {
 
 async function getClases(offset = process.env.DAYS_AHEAD) {
     const date = new Date();
-    date.setDate(date.getDate() + offset);
+    date.setDate(date.getDate() + Number(offset));
     const formattedDate = date.toISOString().split('T')[0] + 'T00:00:00';
-
     const res = await cookieFetch(
         `${baseUrl}/ActividadesColectivas/ClasesColectivasTimeLine?fecha=${formattedDate}`,
         {
@@ -114,11 +113,17 @@ async function reservarClase(idClase, idPlaza = null, idBonoPersona = null) {
 
 (async () => {
     await login();
-    const html = await getClases(0);
+    const html = await getClases();
     const classes = extractClasses(html);
+
     const classId = findClassId(classes);
-    await waitUntil();
-    const resultado = await reservarClase(classId);
-    console.log(resultado ? 'Reserva exitosa' : 'Reserva fallida');
-    return resultado;
+    if (classId) {
+        console.log(
+            `I will book class ${process.env.ACTIVITY} at ${process.env.ACTIVITY_TIME} with id ${classId}`
+        );
+        if (process.env.DAYS_AHEAD === 2) await waitUntil();
+        const resultado = await reservarClase(classId);
+        console.log(`Booking ${resultado ? 'succeeded' : 'failed'}`);
+        return resultado;
+    } else console.log('Class not found');
 })();
