@@ -1,18 +1,24 @@
 {
-  "name": "reserva-gym",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {},
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "@playwright/test": "^1.46.1",
-    "@types/node": "^22.4.2"
-  },
-  "dependencies": {
-    "dayjs": "^1.11.13",
-    "dotenv": "^16.4.5",
-    "prettier": "^3.3.3"
-  }
+    "name": "reserva-gym",
+    "version": "1.0.0",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "booking": "node src/book-class.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "devDependencies": {
+        "@types/node": "^22.4.2"
+    },
+    "dependencies": {
+        "cheerio": "^1.1.2",
+        "dayjs": "^1.11.13",
+        "dotenv": "^16.4.5",
+        "fetch-cookie": "^3.1.0",
+        "node-fetch": "^3.3.2",
+        "prettier": "^3.3.3",
+        "tough-cookie": "^6.0.0"
+    }
 }
