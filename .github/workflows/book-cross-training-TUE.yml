@@ -2,7 +2,7 @@ name: Book CROSS TRAINING for TUE 17:45
 on:
     workflow_dispatch:
     schedule:
-        - cron: '35 15 * * 0' # Runs every Sunday at 17:35h Spain Time to book the class for tuesday at 17:45 // Summer time 2h diff
+        - cron: '30 15 * * 0' # Runs every Sunday at 17:30h Spain Time to book the class for tuesday at 17:45 // Summer time 2h diff
 
 jobs:
     invoke-template:
