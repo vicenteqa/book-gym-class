@@ -3,8 +3,7 @@
  * @param {string} targetTimeStr - hora en formato "HH:MM"
  */
 export async function waitUntil(_targetTimeStr = process.env.ACTIVITY_TIME) {
-    // const targetTimeStr = _targetTimeStr;
-    const targetTimeStr = '16:20';
+    const targetTimeStr = _targetTimeStr;
     const [hours, minutes] = targetTimeStr.split(':').map(Number);
 
     const now = new Date();
