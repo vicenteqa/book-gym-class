@@ -15,7 +15,7 @@ on:
                 description: 'Days ahead to check the activity calendar of the gym'
                 required: false
                 default: 2
-                type: string
+                type: number
         secrets:
             BASE_URL:
                 required: true

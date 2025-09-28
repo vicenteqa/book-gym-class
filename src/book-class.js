@@ -108,22 +108,22 @@ async function reservarClase(idClase, idPlaza = null, idBonoPersona = null) {
     }
 
     const data = await res.json();
-    return JSON.parse(data).status === 'OK';
+    const response = JSON.parse(data);
+    return response.status === 'OK';
 }
 
 (async () => {
     await login();
     const html = await getClases();
     const classes = extractClasses(html);
-
     const classId = findClassId(classes);
     if (classId) {
         console.log(
             `I will book class ${process.env.ACTIVITY} at ${process.env.ACTIVITY_TIME} with id ${classId}`
         );
-        if (process.env.DAYS_AHEAD === 2) await waitUntil();
+        await waitUntil();
         const resultado = await reservarClase(classId);
-        console.log(`Booking ${resultado ? 'succeeded' : 'failed'}`);
-        return resultado;
-    } else console.log('Class not found');
+        if (resultado) 'Booking succeeded';
+        else throw new Error('Booking failed');
+    } else throw new Error('Class not found');
 })();
