@@ -2,14 +2,14 @@ name: Book CROSS TRAINING for MON 18:45
 on:
     workflow_dispatch:
     schedule:
-        - cron: '30 17 * * 6' # Runs every Saturday at 18:25h Spain Time to book the class for Monday at 18:45 // Winter time 1h diff
+        - cron: '30 16 * * 6' # Runs every Saturday at 17:30h Spain Time to book the class for Monday at 17:45 // Winter time 1h diff
 
 jobs:
     invoke-template:
         uses: ./.github/workflows/template.yml
         with:
             activity: 'CROSS TRAINING'
-            activity_time: '18:45'
+            activity_time: '17:45'
         secrets:
             BASE_URL: ${{ secrets.BASE_URL }}
             GYMUSERNAME: ${{ secrets.GYMUSERNAME }}
