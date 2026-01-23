@@ -1,4 +1,4 @@
-name: Book CROSS TRAINING for MON 18:45
+name: Book CROSS TRAINING for MON 17:45
 on:
     workflow_dispatch:
     schedule:
