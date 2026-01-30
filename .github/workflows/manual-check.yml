@@ -19,7 +19,7 @@ jobs:
         with:
             activity: ${{ inputs.activity }}
             activity_time: ${{ inputs.activity_time }}
-            days_ahead: ${{ inputs.days_ahead }}
+            days_ahead: ${{ fromJSON(inputs.days_ahead) }}
         secrets:
             BASE_URL: ${{ secrets.BASE_URL }}
             GYMUSERNAME: ${{ secrets.GYMUSERNAME }}
