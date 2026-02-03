@@ -4,7 +4,9 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "booking": "node src/book-class.js"
+        "booking": "node src/book-class.js",
+        "booking:parc": "node src/book-class-parc.js",
+        "cancel": "node src/cancel-class.js"
     },
     "author": "",
     "license": "ISC",

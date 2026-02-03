@@ -1,7 +1,9 @@
 import 'dotenv/config';
 import { createBookingService } from './booking-service.js';
 
-const bookingService = createBookingService(process.env.BASE_URL);
+const PARC_INSTALACION_ID = '5759';
+
+const bookingService = createBookingService(process.env.BASE_URL, PARC_INSTALACION_ID);
 
 (async () => {
     await bookingService.bookClass({
