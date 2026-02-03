@@ -1,0 +1,35 @@
+name: Cancel Next Class
+
+on:
+    workflow_dispatch:
+        inputs:
+            dry_run:
+                description: 'Dry run mode (set to true to skip actual cancellation)'
+                required: false
+                default: 'false'
+                type: choice
+                options:
+                    - 'false'
+                    - 'true'
+
+env:
+    BASE_URL: ${{ secrets.BASE_URL }}
+    GYMUSERNAME: ${{ secrets.GYMUSERNAME }}
+    PASSWORD: ${{ secrets.PASSWORD }}
+    DRY_RUN: ${{ inputs.dry_run }}
+
+jobs:
+    cancel:
+        timeout-minutes: 10
+        runs-on: ubuntu-latest
+        steps:
+            - name: Show current time for debugging purposes
+              run: TZ="Europe/Madrid" date +"%Y-%m-%d %H:%M:%S"
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+            - name: Install dependencies
+              run: npm ci
+            - name: Run cancel script
+              run: npm run cancel
