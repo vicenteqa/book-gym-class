@@ -49,8 +49,13 @@ export function createBookingService(baseUrl, instalacionId = null) {
 
     function findClassId(clases, activity, activityTime) {
         if (!Array.isArray(clases)) return null;
+        const activityLower = activity.toLowerCase();
         const clase = clases.find((c) => {
-            return c && c.name === activity && c.time === activityTime;
+            return (
+                c &&
+                c.name.toLowerCase().includes(activityLower) &&
+                c.time === activityTime
+            );
         });
         return clase ? clase.id : null;
     }
